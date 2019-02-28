@@ -1,3 +1,14 @@
+<?php
+  //(DONT INCLUDE ON WEBHOST)
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+  
+  if(isset($_POST['register-btn'])) {
+    $user_code_obj = new UserAccess();
+    $user_code_obj->register($_POST['first_name'], $_POST['last_name'], $_POST['email_register'], $_POST['password_register'], $_POST['confirm_email_register'], $_POST['confirm_password_register']);
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +27,7 @@
       <h1>Login/Registration Page</h1>
   </div>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
+    <li class="nav-item"> <!-- add 'active' -->
       <a class="nav-link" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login"
         aria-selected="true">Login</a>
     </li>
@@ -28,20 +39,22 @@
   <br>
   <div class="tab-content" id="form-tabs">
     <div class="tab-pane fade" id="login" role="tabpanel" aria-labelledby="login-tab">
-      <form>
+      <form role="form" method="POST" action="user_access_code.php">
+        <input type="hidden" name="loginAction" value="login">
         <div class="form-group">
           <label for="email_login">Email address</label>
-          <input type="email" class="form-control" id="email_login" aria-describedby="Email Address" placeholder="Enter email">
+          <input type="email" class="form-control" name="email_login" id="email_login" aria-describedby="Email Address" placeholder="Enter email">
         </div>
         <div class="form-group">
           <label for="password_login">Password</label>
-          <input type="password" class="form-control" id="password_login" placeholder="Password">
+          <input type="password" class="form-control" name="password_login" id="password_login" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-success" style="width:100%;">Login</button>
+        <button type="submit" class="btn btn-success" style="width:100%;" name="login-btn">Login</button>
       </form>
     </div>
     <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-      <form>
+      <form method="POST" action='user_access_code.php' name='regForm' id='regForm'>
+        <input type="hidden" name="regAction" value="register">
         <div class="form-group">
           <label for="first_name">First Name</label>
           <input type="text" class="form-control" id="first_name" aria-describedby="First Name" placeholder="Enter your first name">
@@ -51,22 +64,22 @@
           <input type="text" class="form-control" id="last_name" aria-describedby="Last Name" placeholder="Enter your last name">
         </div>
         <div class="form-group">
-          <label for="email_login">Email address</label>
-          <input type="email" class="form-control" id="email_login" aria-describedby="Email Address" placeholder="Enter email">
+          <label for="email_register">Email address</label>
+          <input type="email" class="form-control" id="email_register" aria-describedby="Email Address" placeholder="Enter email">
         </div>
         <div class="form-group">
-          <label for="confirm_email_login">Confirm Email address</label>
-          <input type="email" class="form-control" id="confirm_email_login" aria-describedby="Confirm Email Address" placeholder="Confirm your email">
+          <label for="confirm_email_register">Confirm Email address</label>
+          <input type="email" class="form-control" id="confirm_email_register" aria-describedby="Confirm Email Address" placeholder="Confirm your email">
         </div>
         <div class="form-group">
-          <label for="password_login">Password</label>
-          <input type="password" class="form-control" id="password_login" placeholder="Password">
+          <label for="password_register">Password</label>
+          <input type="password" class="form-control" id="password_register" placeholder="Password">
         </div>
         <div class="form-group">
-          <label for="confirm_password_login">Confirm Password</label>
-          <input type="password" class="form-control" id="confirm_password_login" placeholder="Confirm your password">
+          <label for="confirm_password_register">Confirm Password</label>
+          <input type="password" class="form-control" id="confirm_password_register" placeholder="Confirm your password">
         </div>
-        <button type="submit" class="btn btn-danger" style="width:100%;">Register</button>
+        <button type="submit" class="btn btn-danger" name="register-btn" style="width:100%;">Register</button>
       </form>
   </div>
 </div>
