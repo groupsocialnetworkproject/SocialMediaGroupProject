@@ -8,10 +8,7 @@ session_start();
 include('forum_code.php');
 
 $forumCode = new ForumCode();
-
-if(isset($_POST['msg_post'])){
-  $forumCode->send_message($_POST);
-}
+//$forumCode->send_message($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +22,13 @@ if(isset($_POST['msg_post'])){
       <!-- Custom styles for this template -->
       <link href="css/quickblog.css" rel="stylesheet">
       <link rel="stylesheet" href="css/chatcss.css">
+      <style type="text/css">
+        .startMsgUsr:hover 
+        {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+      </style>
    </head>
    <body style="padding-top: 56px;">
       <!-- Navigation -->
@@ -88,9 +92,9 @@ if(isset($_POST['msg_post'])){
                            </ul>
                         </div>
                         <div class="panel-footer">
-                           <form role="form" method="POST" action="">
+                           <form role="form" method="POST" action="" name="sendMsg" id="sendMsg">
                               <div class="input-group" style="margin-bottom: 5px;">
-                                 <input type="hidden" name="receiver" value="<?php echo 'tester@test.com' //echo $getAssoc['receiver']; ?>">
+                                 <input type="hidden" name="receiver" id="receiver" value="">
                                  <input type="hidden" name="sender" id="user_who_online" value="<?php echo $_SESSION['user_online']; ?>">
                                  <input type="text" name="msgbody" id="msgbody" placeholder="Enter your message..." class="form-control">
                               </div>
@@ -112,12 +116,10 @@ if(isset($_POST['msg_post'])){
                     <?php //echo 'tester@test.com' 
                       $getUser = $forumCode->get_users();
                       foreach($getUser as $foundUser) {
-                        echo '<div class="input-group" style="border: 0.5px solid black; padding: 5px; border-radius: 10px; margin-bottom:5px;">
+                        echo '<div class="input-group toggle-prvmsg" style="border: 0.5px solid black; padding: 5px; border-radius: 10px; margin-bottom:5px;">
                             <img src="assets/generic-profile.png" name="hey" alt="pp" style="height:30px; margin-right: 5px;" class="privMsgUsr">
                             <h5>
-                              <span id="startMsgUsr">
-                                '. $foundUser['email'] . '
-                              </span>
+                              <span class="startMsgUsr">'. $foundUser['email'] . '</span>
                             </h5>
                          </div>';
                       }
@@ -138,22 +140,49 @@ if(isset($_POST['msg_post'])){
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
       <script type="text/javascript">
           $(document).ready(function(){
-            $(".privMsgUsr").click(function(e) {
-              var messageThem = $('#startMsgUsr').html();
+            $(".startMsgUsr").click(function(e) {
+              var messageThem = $(this).text();
               var online_user = $('#user_who_online').val();
-              //try classes but then that doesnt 100% work, use alerts to test
+
+              $("#receiver").val(messageThem);
+
               $.ajax({
                 type: "POST",
                 url: 'private_room_ajax.php',
-                data: {"messageThem": messageThem, 'who_sending': online_user},
+                data: {'who_sending': online_user,"messageThem": messageThem},
                 success: function(data) {
                   $('#dynamic_chat').html(data);
+                },
+                error: function(xhr){
+                  alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
                 }
               });
             });
 
+
+            $("#sendMsg").submit(function(e) {
+              e.preventDefault();
+              var sender = $('#user_who_online').val();
+              var receiver = $('#receiver').val();
+              var msgContents = $('#msgbody').val();
+
+              $.ajax({
+                type: "POST",
+                url: 'sendPrivateMsg.php',
+                data: {'sender': sender,'receiver': receiver,'msgContents': msgContents},
+                success: function(data) {
+                  $('#dynamic_chat').html(data);
+                },
+                error: function(xhr){
+                  alert(111);
+                  alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+                }
+              });
+            });
+
+
             $("#privateMsgWidget").hide();
-            $(".privMsgUsr").click(function() {
+            $(".startMsgUsr").click(function() {
               $("#privateMsgWidget").toggle();
               $("#forumPage").toggle();
             });

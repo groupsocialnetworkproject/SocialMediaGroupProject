@@ -60,13 +60,13 @@ class ForumCode
 		return $result;		
 	}
 
-	public function send_message($msgArray) {
+	public function send_message($sender, $receiver, $msgContents) {
 		$db = new Database();
 		$connection = $db->open_connection("groupproject");
 
 		$msgToSend = isset($msgArray['msgbody']) && !empty($msgArray['msgbody']) ? $msgArray['msgbody'] : null;
 
-		$sendMsgQuery = "INSERT INTO private_messages (sender, receiver, message_contents, sent_time, opened) VALUES ('" . $msgArray['sender'] . "', '" . $msgArray['receiver'] . "', '" . $msgToSend . "', '" . date('h:i:s') . "', '" . 0  . "')";
+		$sendMsgQuery = "INSERT INTO private_messages (sender, receiver, message_contents, sent_time, opened) VALUES ('" . $sender . "', '" . $receiver . "', '" . $msgContents . "', '" . date('h:i:s') . "', '" . 0  . "')";
 		$sendMsgResult = $db->queryDb($connection, $sendMsgQuery);
 
 		if (!$sendMsgResult) {

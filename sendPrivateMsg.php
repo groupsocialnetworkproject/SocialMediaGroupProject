@@ -2,11 +2,17 @@
 include 'forum_code.php';
 
 $forumObj = new ForumCode();
-$result = $forumObj->get_private_messages($_POST['who_sending'], $_POST['messageThem']);
+$sender = $_POST['sender'];
+$receiver = $_POST['receiver'];
+$msgContents = $_POST['msgContents']; 
 
-while ($data = mysqli_fetch_row($result)) {
+$result = $forumObj->send_message($sender, $receiver, $msgContents);
+
+$reloadChat = $forumObj->get_private_messages($sender, $receiver);
+
+while ($data = mysqli_fetch_row($reloadChat)) {
     
-    if ($data[1] == $_POST['who_sending']) {
+    if ($data[1] == $sender) {
         echo '
         <li>
           <span style="float: right;">
