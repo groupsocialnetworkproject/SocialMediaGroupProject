@@ -7,6 +7,11 @@
 body{
     /*background-image:url(https://staff.lincoln.ac.uk/profile/image/kjacques);*/
 }
+#filterButtons p {
+    font-size: 1.5vw;
+    margin: 0;
+    text-align: center;
+}
 /*Space tags to add some padding between columns*/
 #space10{
     height:10px;
@@ -25,38 +30,12 @@ body{
     font-weight: bold;
     color:white;
 }
-/*Filtering section (left side column)*/
-#filters{
-    font-family: 'Montserrat', sans-serif;
-    border-style: solid;
-    border-radius: 20px;
-    background-color: lightgray;
-    display:none;
-    /*background-image:url(https://staff.lincoln.ac.uk/profile/image/kjacques)*/
-}
-
 #dropdownMenu2{
     width:100%;
     font-size: 1vw;
 }
-#filterText{
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 1vw;
-    background-color: white;
-    /*background-image:url(https://staff.lincoln.ac.uk/profile/image/kjacques)*/
-}
 
 /*Number of jobs found and other filters (right side column)*/
-#jobsInfoContainer{
-    border-style: solid;
-    border-radius: 20px;
-    background-color: lightgray;
-    display:none;
-    /*background-image:url(https://staff.lincoln.ac.uk/profile/image/kjacques)*/
-}
 h{
     text-decoration: underline;
     font-weight: bold;
@@ -82,42 +61,11 @@ h{
     font-size: 2.5vw;
     text-align: center;
 }
-/*Two extra filters at bottom of right side column*/
-#tabJob{
-    background: #ada2ff;
-    border-color: #ada2ff;
-    font-size: 1.8vw;
-    font-weight: bold;
-    opacity: 1;
-    transition: 0.3s;
-    width:90%;
-}
-#tabCompany{
-    background: #ada2ff;
-    border-color: #ada2ff;
-    font-size: 1.8vw;
-    font-weight: bold;
-    opacity: 1;
-    transition: 0.3s;
-    width:90%;
-}
-#tabCompany:hover{
- opacity: 0.5;
-}
-#tabJob:hover{
-    opacity:0.5;
-}
+
 /*Section displaying the jobs themselves*/
 #jobList{
     border-style: solid;
     border-radius: 20px;
-}
-#jobsInfoContainer .row{
-    margin-top:20px;
-}
-
-#filterRow{
-    padding-top:30px;
 }
 
 #dropdownMenu2{
@@ -128,155 +76,71 @@ h{
 #dropdownMenu2:hover{
     opacity:0.5;
 }
-/*Mobile version**************************************************/
-#filterwidth_mobile{
 
-}
-#jobsInfoContainer_mobile {
+#jobsInfoContainer {
     border-style: solid;
     border-radius: 20px;
     background-color: lightgray;
-    /*background-image:url(https://staff.lincoln.ac.uk/profile/image/kjacques)*/
 }
-#tabJob_mobile{
-    background: #ada2ff;
-    border-color: #ada2ff;
-    font-size: 8px;
-    font-weight: bold;
-    opacity: 1;
-    transition: 0.3s;
-    margin-bottom:5px;
-}
-#tabCompany_mobile{
-    background: #ada2ff;
-    border-color: #ada2ff;
-    font-size: 8px;
-    font-weight: bold;
-    opacity: 1;
-    transition: 0.3s;
-    margin-bottom:5px;
-}
-#tabCompany_mobile:hover{
-    opacity: 0.5;
-}
-#tabJob_mobile:hover{
-    opacity:0.5;
-}
-#filters_mobile{
+
+#filters{
     font-family: 'Montserrat', sans-serif;
     border-style: solid;
     border-radius: 20px;
     background-color: lightgray;
-    /*background-image:url(https://staff.lincoln.ac.uk/profile/image/kjacques)*/
 }
-#filterText_mobile {
+#filterText {
     border-style: solid;
     border-width: 1px;
     border-radius: 5px;
+    font-size:12px;
     text-align: center;
-    font-size: 1vw;
     background-color: white;
 }
-#filterText_mobile{
-    font-size:10px;
-    /*background-image:url(https://staff.lincoln.ac.uk/profile/image/kjacques)*/
-}
-#filterRow_mobile{
+
+#filterRow{
     padding-top:30px;
 }
-
-
-@media only screen and (max-width: 1176px) {
-
-    #tabJob{
-        margin-bottom:5px;
-    }
-    #filterButtons p{
-        font-size: 10px;
-        margin:0;
-        text-align: center;
-    }
-    #jobsInfoContainer .row{
-        margin-top:10px;
-    }
-    #filterRow{
-        padding-top:10px;
-    }
-
+#Titles p{
+    font-size: 1.5vw;
+    text-decoration: underline;
+    text-decoration-line: underline;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
 }
-@media only screen and (min-width:965px) and (max-width:1026px){
-    #tabJob{
-        font-size: 13px;
-    }
-    #tabCompany{
-        font-size: 13px;
+
+@media only screen and (max-width: 850px) {
+    #Titles p{
+        font-size:15px;
     }
 }
-@media only screen and (max-width: 964px) {
-
-    #tabJob{
-        font-size: 12px;
-    }
-    #tabCompany{
-        font-size: 12px;
-    }
-
-}
-@media only screen and (max-width: 746px) {
-    #filterButtons p {
-        font-size: 7px;
-        margin: 0;
-        text-align: center;
-    }
-
-    #tabJob {
-        font-size: 10px;
-        transform:translate(0,-10px);
-    }
-
-    #tabCompany {
-        font-size: 10px;
-        transform:translate(0,-10px);
-    }
-    #button{
-        margin-top: 15px;
-    }
-
-}
-@media only screen and (max-width: 664px){
-    #tabJob {
-        font-size: 8.5px;
-    }
-
-    #tabCompany {
-        font-size: 8.5px;
+@media only screen and (max-width: 734px) {
+    #JobTableTitles{
+        font-size:12px;
     }
 }
 /*Mobile version*/
-@media only screen and (max-width: 610px){
-    #filterButtons_mobile p {
-        font-size: 10px;
+@media only screen and (max-width: 615px){
+    #filterButtons p {
+        font-size: 15px;
         margin: 0;
         text-align: center;
     }
     button#dropdownMenu2.btn.btn-secondary.dropdown-toggle::after{
         margin-top:5px;
-        font-size:10px;
-    }
-    #jobsInfoContainer{
-        Display:none;
-    }
-    #filters{
-        display:none;
-    }
-    #close_space{
-        display:none;
-    }
-    #Titles{
         font-size:12px;
     }
     #score1{
         padding-left:5px;
     }
+    #Titles p{
+        font-size:10px;
+        text-decoration: underline;
+        text-decoration-line: underline;
+        text-decoration-style: initial;
+        text-decoration-color: initial;
+    }
+    #JobTableTitles{
+        font-size:9px;
+    }
 }
-
