@@ -1,7 +1,6 @@
 
     console.log('Header Page JS loaded');
-    console.log('9 Changes have been made');
-
+    
     //Animated search bar
     function expand() {
         $(".search").toggleClass("close");
