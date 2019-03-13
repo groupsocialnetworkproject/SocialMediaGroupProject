@@ -8,23 +8,18 @@
   		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  		<link type="text/css" rel="stylesheet" href="jobs_page.css?version=1">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link type="text/css" rel="stylesheet" href="jobs_page.css?version=1">
   		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <?php  include_once 'db_connect.php'; include_once 'job_objects.php'; ?>
-        
+        <?php  include_once 'db_connect.php'; include_once 'job_objects.php';?>
     </head>
     <body>
+    <?php include 'Header.php';?>
         <div class="row" id="space30"></div>
     	<div id="container">
-            <div class="row">
-            	<div class="col-12" id="title">
-            		<span class="align-middle">Student, Graduate and Placement Jobs Page</span>
-            	</div>
-            </div>
             <div class="row" id="space10"></div>
-            <div class="row" id="filterwidth_mobile">
-        <div class="col" id="filterButtons_mobile">
+            <div class="row" id="filterwidth">
+        <div class="col" id="filterButtons">
             <div class="row" id="space10"></div>
             <div class="row">
                 <div class="col-6">
@@ -33,15 +28,15 @@
                             <p>Field</p>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button" id="soft_mob">Software and Technology</button>
-                            <button class="dropdown-item" type="button" id="mech_mob">Mechanical Engineering</button>
-                            <button class="dropdown-item" type="button" id="elec_mob">Electronic Engineering</button>
-                            <button class="dropdown-item" type="button" id="chem_mob">Chemical Engineering</button>
+                            <button class="dropdown-item" type="button" id="soft">Software and Technology</button>
+                            <button class="dropdown-item" type="button" id="mech">Mechanical Engineering</button>
+                            <button class="dropdown-item" type="button" id="elec">Electronic Engineering</button>
+                            <button class="dropdown-item" type="button" id="chem">Chemical Engineering</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-5" id="filterText_mobile">
-                    <span class="align-middle" id="fieBox_mob"></span>
+                <div class="col-5" id="filterText">
+                    <span class="align-middle" id="fieBox"></span>
                 </div>
             </div>
             <div class="row" id="space10"></div>
@@ -52,15 +47,15 @@
                             <p>Contract <br />Type</p>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button" id="part_mob">Part Time Placement</button>
-                            <button class="dropdown-item" type="button" id="grad_mob">Graduate Jobs</button>
-                            <button class="dropdown-item" type="button" id="summ_mob">Summer Placement</button>
-                            <button class="dropdown-item" type="button" id="12mon_mob">12 Month Placement</button>
+                            <button class="dropdown-item" type="button" id="part">Part Time Placement</button>
+                            <button class="dropdown-item" type="button" id="grad">Graduate Jobs</button>
+                            <button class="dropdown-item" type="button" id="summ">Summer Placement</button>
+                            <button class="dropdown-item" type="button" id="12mon">12 Month Placement</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-5" id="filterText_mobile">
-                    <span class="align-middle" id="typBox_mob"></span>
+                <div class="col-5" id="filterText">
+                    <span class="align-middle" id="typBox"></span>
                 </div>
             </div>
             <div class="row" id="space10"></div>
@@ -71,15 +66,15 @@
                             <p>Salary</p>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button" id="10k_mob">£0 - 10000</button>
-                            <button class="dropdown-item" type="button" id="20k_mob">£10000 - 20000</button>
-                            <button class="dropdown-item" type="button" id="30k_mob">£20000 - 30000</button>
-                            <button class="dropdown-item" type="button" id="more_mob">£30000 +</button>
+                            <button class="dropdown-item" type="button" id="10k">£0 - 10000</button>
+                            <button class="dropdown-item" type="button" id="20k">£10000 - 20000</button>
+                            <button class="dropdown-item" type="button" id="30k">£20000 - 30000</button>
+                            <button class="dropdown-item" type="button" id="more">£30000 +</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-5" id="filterText_mobile">
-                    <span class="align-middle" id="salBox_mob"></span>
+                <div class="col-5" id="filterText">
+                    <span class="align-middle" id="salBox"></span>
                 </div>
             </div>
             <div class="row" id="space10"></div>
@@ -90,16 +85,16 @@
                             <p>Location</p>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button" id="SY_mob">South Yorkshire</button>
-                            <button class="dropdown-item" type="button" id="NY_mob">North Yorkshire</button>
-                            <button class="dropdown-item" type="button" id="EY_mob">East Yorkshire</button>
-                            <button class="dropdown-item" type="button" id="WY_mob">West Yorkshire</button>
-                            <button class="dropdown-item" type="button" id="other_mob">Everywhere else is pointless</button>
+                            <button class="dropdown-item" type="button" id="SY">South Yorkshire</button>
+                            <button class="dropdown-item" type="button" id="NY">North Yorkshire</button>
+                            <button class="dropdown-item" type="button" id="EY">East Yorkshire</button>
+                            <button class="dropdown-item" type="button" id="WY">West Yorkshire</button>
+                            <button class="dropdown-item" type="button" id="other">Everywhere else is pointless</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-5" id="filterText_mobile">
-                    <span class="align-middle" id="locBox_mob"></span>
+                <div class="col-5" id="filterText">
+                    <span class="align-middle" id="locBox"></span>
                 </div>
             </div>
             <div class="row" id="space10"></div>
@@ -128,17 +123,17 @@
             <div class="row" id="space10"></div>
         </div>
     </div>
-     <div class="row" id="JobsContainer_mobile">
-        <div class="col" id="jobsInfoContainer_mobile">
+     <div class="row" id="JobsContainer">
+        <div class="col" id="jobsInfoContainer">
             <div class="row" id="Titles">
                 <div class="col-4">
-                    <h>Jobs Found</h>
+                    <p><b>Jobs Found</b></p>
                 </div>
                 <div class="col-4">
-                    <h>Average Salary</h>
+                    <p><b>Average Salary</b></p>
                 </div>
                 <div class="col-4">
-                    <h>Number of Companies</h>
+                    <p><b>Number of Companies</b></p>
                 </div>
             </div>
             <div class="row" id="score">
@@ -174,7 +169,7 @@
     </div>
     <div class="row" id="space30"></div>
             <div class="row" id="space30"></div>
-            <div class="row">
+            <div class="row" id="JobTableTitles">
                 <div class="col-2" id="column_table"><p>Job Title</p></div>
                 <div class="col-2" id="column_table"><p>Company</p></div>
                 <div class="col-2" id="column_table"><p>Location</p></div>
@@ -205,14 +200,12 @@
         </div>
         <script>
             function order() {
-
-                var field = document.getElementById("fieBox_mob").textContent;
-                var type = document.getElementById("typBox_mob").textContent;
-                var salary = document.getElementById("salBox_mob").textContent;
-                var location = document.getElementById("locBox_mob").textContent;
+                var field = document.getElementById("fieBox").textContent;
+                var type = document.getElementById("typBox").textContent;
+                var salary = document.getElementById("salBox").textContent;
+                var location = document.getElementById("locBox").textContent;
                 var orderBy = document.getElementById("ordBox").textContent;
-
-                var xhttp;    
+                var xhttp;
                 console.log("function was called");    
                     $.ajax({
                         url: 'jobs_filtering.php', //This is the current doc
@@ -241,5 +234,5 @@
                     });   
             }                
         </script>
-        <script src="jobs_page.js?version=1"></script>
+    <script src="jobs_page.js?version=1"></script>
     </body>
