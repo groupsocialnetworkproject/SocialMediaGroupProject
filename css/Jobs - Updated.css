@@ -31,6 +31,7 @@ body{
     border-style: solid;
     border-radius: 20px;
     background-color: lightgray;
+    display:none;
     /*background-image:url(https://staff.lincoln.ac.uk/profile/image/kjacques)*/
 }
 
@@ -53,13 +54,28 @@ body{
     border-style: solid;
     border-radius: 20px;
     background-color: lightgray;
+    display:none;
     /*background-image:url(https://staff.lincoln.ac.uk/profile/image/kjacques)*/
 }
 h{
     text-decoration: underline;
     font-weight: bold;
 }
-#nums{
+#numOfCompanies{
+    border-radius: 25px;
+    background: #d4a1f3;
+    color: white;
+    font-size: 2.5vw;
+    text-align: center;
+}
+#numOfJobs{
+    border-radius: 25px;
+    background: #d4a1f3;
+    color: white;
+    font-size: 2.5vw;
+    text-align: center;
+}
+#average_sal{
     border-radius: 25px;
     background: #d4a1f3;
     color: white;
@@ -115,13 +131,12 @@ h{
 }
 /*Mobile version**************************************************/
 #filterwidth_mobile{
-    display:none;
+
 }
 #jobsInfoContainer_mobile {
     border-style: solid;
     border-radius: 20px;
     background-color: lightgray;
-    display: none;
     width: 100%;
     /*background-image:url(https://staff.lincoln.ac.uk/profile/image/kjacques)*/
 }
