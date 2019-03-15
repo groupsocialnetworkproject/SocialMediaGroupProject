@@ -1,8 +1,8 @@
 <?php
    //(DONT INCLUDE ON WEBHOST)
-   /*ini_set('display_errors', 1);
+   ini_set('display_errors', 1);
    ini_set('display_startup_errors', 1);
-   error_reporting(E_ALL);*/
+   error_reporting(E_ALL);
    ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,15 +14,15 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
    </head>
-   <body style="background-color: #f5f5f5;">
+   <body style="background-color: #5f0776;, font-family: 'Montserrat', sans-serif;">
       <div class="container">
-         <div class="row">
+         <div class="row" style="color:white;">
             <div class="col-md-6 col-md-offset-3">
                <div class="page-header text-center">
                   <h1>Login/Registration Page</h1>
                </div>
                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item">
+                  <li class="nav-item" style="color:white;">
                      <!-- add 'active' -->
                      <a class="nav-link" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login"
                         aria-selected="true">Login</a>
@@ -63,6 +63,22 @@
                      <form method="POST" action='user_access_code.php' name='regForm' id='regForm'>
                         <input type="hidden" name="regAction" value="register">
                         <div class="form-group">
+                           <label for="university-selection">Univeristy</label>
+                           <select class="form-control" id="university-selection" name="university-selection" aria-describedby="university-selection">
+                              <option value="University of Lincoln">University of Lincoln</option>
+                              <option value="University of Nottingham">University of Nottingham</option>
+                              <option value="University of Derby">University of Derby</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                           <label for="course-selection">Course</label>
+                           <select class="form-control" id="course-selection" name="course-selection" aria-describedby="university-selection">
+                              <option value="Computer Science">Computer Science</option>
+                              <option value="Games Computing">Games Computing</option>
+                              <option value="Art">Art</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                            <label for="first_name">First Name</label>
                            <input type="text" class="form-control" id="first_name" name="first_name" aria-describedby="First Name" placeholder="Enter your first name">
                         </div>
@@ -93,7 +109,7 @@
             </div>
          </div>
          <div class="row text-center">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-6 col-md-offset-3" style="color:white;">
                <p>Copyright &copy; <?php echo date('Y'); ?></p>
             </div>
          </div>
