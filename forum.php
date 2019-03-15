@@ -31,33 +31,7 @@ $forumCode = new ForumCode();
       </style>
    </head>
    <body style="padding-top: 56px;">
-      <!-- Navigation -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-         <div class="container">
-            <a class="navbar-brand" href="#">Forum</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-               <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active">
-                     <a class="nav-link" href="#">Home</a>
-                  </li>
-                  <?php 
-                    if(isset($_SESSION['user_online'])){
-                      echo '
-                        <li class="nav-item"><a href="user_access_code.php?logout" class="nav-link">Logout</a></li>
-                      ';
-                    } else {
-                      echo '
-                        <li class="nav-item"><a href="login.php" class="nav-link">Login/Register</a></li>
-                      ';
-                    }
-                  ?>
-               </ul>
-            </div>
-         </div>
-      </nav>
+     
       <!-- Page Content -->
       <div class="container">
          <div class="row">
@@ -99,7 +73,7 @@ $forumCode = new ForumCode();
                                  <input type="text" name="msgbody" id="msgbody" placeholder="Enter your message..." class="form-control">
                               </div>
                               <div class="input-group">
-                                 <input type="submit" class="form-control btn btn-success" name="msg_post">
+                                 <button type="submit" class="form-control btn btn-success" name="msg_post"><span class="fas fa-paper-plane"></span></button>
                               </div>
                            </form>
                         </div>
@@ -111,7 +85,7 @@ $forumCode = new ForumCode();
             <div class="col-md-4">
                <!-- Search Widget -->
                <div class="card my-4">
-                  <h5 class="card-header">Search</h5>
+                  <h5 class="card-header">People</h5>
                   <div class="card-body">
                     <?php //echo 'tester@test.com' 
                       $getUser = $forumCode->get_users();
@@ -124,10 +98,6 @@ $forumCode = new ForumCode();
                          </div>';
                       }
                     ?>
-                     <Br>
-                     <div class="input-group">
-                        <button class="btn btn-success" style="width: 100%;" type="button">Go!</button>
-                     </div>
                   </div>
                </div>
             </div>
@@ -152,6 +122,7 @@ $forumCode = new ForumCode();
                 data: {'who_sending': online_user,"messageThem": messageThem},
                 success: function(data) {
                   $('#dynamic_chat').html(data);
+
                 },
                 error: function(xhr){
                   alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
@@ -174,7 +145,6 @@ $forumCode = new ForumCode();
                   $('#dynamic_chat').html(data);
                 },
                 error: function(xhr){
-                  alert(111);
                   alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
                 }
               });
