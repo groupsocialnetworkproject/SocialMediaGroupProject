@@ -10,6 +10,7 @@ error_reporting(E_ALL);
 class ForumCode
 {
 	
+	
 	function __construct()
 	{
 		include 'database.php';
