@@ -11,18 +11,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
    </head>
-   <body style="background-color: #f5f5f5;">
+   <body style="background-color: #5f0776;, font-family: 'Montserrat', sans-serif;">
       <div class="container">
-         <div class="row">
+         <div class="row" style="color:white;">
             <div class="col-md-6 col-md-offset-3">
                <div class="page-header text-center">
                   <h1>Login/Registration Page</h1>
                </div>
                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item">
+                  <li class="nav-item" style="color:white;">
                      <!-- add 'active' -->
                      <a class="nav-link" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login"
                         aria-selected="true">Login</a>
@@ -109,7 +110,7 @@
             </div>
          </div>
          <div class="row text-center">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-6 col-md-offset-3" style="color:white;">
                <p>Copyright &copy; <?php echo date('Y'); ?></p>
             </div>
          </div>
