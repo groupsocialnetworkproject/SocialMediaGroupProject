@@ -1,7 +1,7 @@
 <?php
-/*ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);*/
+error_reporting(E_ALL);
 /**
  *  Class for logging in, registering and utilising session
  */
@@ -40,6 +40,10 @@ class UserAccess
 		$db = new Database();
 		$connection = $db->open_connection("groupproject");
 		
+		$university_selection = isset($regArray['university-selection']) && !empty($regArray['university_selection']) ? $regArray['university_selection'] : null;
+
+		die("test: " . $regArray($_POST['university-selection']));
+		$course_selection = isset($regArray['course-selection']) && !empty($regArray['course_selection']) ? $regArray['course_selection'] : null;
 		$first_name = isset($regArray['first_name']) && !empty($regArray['first_name']) ? $regArray['first_name'] : null;
         $last_name = isset($regArray['last_name']) && !empty($regArray['last_name']) ? $regArray['last_name'] : null;
 		$email = isset($regArray['email_register']) && !empty($regArray['email_register']) ? $regArray['email_register'] : null;
@@ -57,7 +61,7 @@ class UserAccess
 		//if user registration is unique then begin creating
 		if ($result->num_rows == 0) {
 			if($email == $emailConf && $password == $passwordConf) {
-				$regQuery = "INSERT INTO accounts (email, password, first_name, last_name, about_text) VALUES ('" . $email . "', '" . sha1($password) . "', '" . $first_name . "', '" . $last_name  . "', 'About You...')";
+				$regQuery = "INSERT INTO accounts (university, course, email, password, first_name, last_name, about_text) VALUES ('" . $university_selection . "', '" . $course_selection . "', '" . $email . "', '" . sha1($password) . "', '" . $first_name . "', '" . $last_name  . "', 'About You...')";
 				$regResult = $db->queryDb($connection, $regQuery);
 				if($regResult) {
 					$_SESSION['successMsg'] = "Succesfully registered. Please, log in.";
