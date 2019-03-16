@@ -40,10 +40,8 @@ class UserAccess
 		$db = new Database();
 		$connection = $db->open_connection("groupproject");
 		
-		$university_selection = isset($regArray['university-selection']) && !empty($regArray['university_selection']) ? $regArray['university_selection'] : null;
-
-		die("test: " . $regArray($_POST['university-selection']));
-		$course_selection = isset($regArray['course-selection']) && !empty($regArray['course_selection']) ? $regArray['course_selection'] : null;
+		$university_selection = isset($regArray['university-selection']) && !empty($regArray['university-selection']) ? $regArray['university-selection'] : null;
+		$course_selection = isset($regArray['course-selection']) && !empty($regArray['course-selection']) ? $regArray['course-selection'] : null;
 		$first_name = isset($regArray['first_name']) && !empty($regArray['first_name']) ? $regArray['first_name'] : null;
         $last_name = isset($regArray['last_name']) && !empty($regArray['last_name']) ? $regArray['last_name'] : null;
 		$email = isset($regArray['email_register']) && !empty($regArray['email_register']) ? $regArray['email_register'] : null;
@@ -61,7 +59,7 @@ class UserAccess
 		//if user registration is unique then begin creating
 		if ($result->num_rows == 0) {
 			if($email == $emailConf && $password == $passwordConf) {
-				$regQuery = "INSERT INTO accounts (university, course, email, password, first_name, last_name, about_text) VALUES ('" . $university_selection . "', '" . $course_selection . "', '" . $email . "', '" . sha1($password) . "', '" . $first_name . "', '" . $last_name  . "', 'About You...')";
+				$regQuery = "INSERT INTO accounts (profile_picture, university, course, email, password, first_name, last_name, about_text) VALUES ('generic-profile.png', '" . $university_selection . "', '" . $course_selection . "', '" . $email . "', '" . sha1($password) . "', '" . $first_name . "', '" . $last_name  . "', 'About You...')";
 				$regResult = $db->queryDb($connection, $regQuery);
 				if($regResult) {
 					$_SESSION['successMsg'] = "Succesfully registered. Please, log in.";

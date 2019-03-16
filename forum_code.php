@@ -10,7 +10,6 @@ error_reporting(E_ALL);
 class ForumCode
 {
 	
-	
 	function __construct()
 	{
 		include 'database.php';
@@ -67,7 +66,7 @@ class ForumCode
 
 		$msgToSend = isset($msgArray['msgbody']) && !empty($msgArray['msgbody']) ? $msgArray['msgbody'] : null;
 
-		$sendMsgQuery = "INSERT INTO private_messages (sender, receiver, message_contents, sent_time, opened) VALUES ('" . $sender . "', '" . $receiver . "', '" . $msgContents . "', '" . date('h:i:s') . "', '" . 0  . "')";
+		$sendMsgQuery = "INSERT INTO private_messages (sender, receiver, message_contents, sent_time, opened) VALUES ('" . $sender . "', '" . $receiver . "', '" . $msgContents . "', '" . date('d/m/y H:i:s') . "', '" . 0  . "')";
 		$sendMsgResult = $db->queryDb($connection, $sendMsgQuery);
 
 		if (!$sendMsgResult) {
