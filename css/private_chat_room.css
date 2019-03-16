@@ -1,7 +1,7 @@
-body { background-color: #aaaaaa;
+body { background-color: grey;"
 font-family: Montserrat;}
 .container{max-width:1170px; margin:5;
-background-color: #aaaaaa;
+background-color: #5f0776;
 color: white;}
 img{ max-width:100%;}
 .inbox_people {
@@ -67,12 +67,12 @@ img{ max-width:100%;}
   margin: 0;
   padding: 18px 16px 10px;
 	background-color: 
-#be9cec;
+#5f0776;;
 }
 .inbox_chat { height: 550px; overflow-y: scroll;
 }
 .mesgs { align-content: right;}
-.active_chat{ background:#be9cec;
+.active_chat{ background:#5f0776;
 }
 
 .incoming_msg_img {
@@ -127,7 +127,7 @@ img{ max-width:100%;}
   font-size: 15px;
   min-height: 48px;
   width: 100%;
-	background-color: #591792;
+	background-color: #5f0776;;
 }
 
 .type_msg {border-top: 1px solid #c4c4c4;position: relative;}
