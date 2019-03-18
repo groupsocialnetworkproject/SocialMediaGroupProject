@@ -69,8 +69,6 @@ h{
 
 /*Section displaying the jobs themselves*/
 #jobList{
-    border-style: solid;
-    border-radius: 20px;
 }
 
 #dropdownMenu2{
