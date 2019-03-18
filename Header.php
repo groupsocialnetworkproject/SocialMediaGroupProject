@@ -30,7 +30,7 @@
         </div>
         <!-- left side header nav bar -->
         <div class="col" id="links">
-            <a href="Under_construction.html"><span class="hvr-underline-from-center">Jobs</span></a>
+            <a href="jobs.php"><span class="hvr-underline-from-center">Jobs</span></a>
             <a href="Under_construction.html"><span class="hvr-underline-from-center">Create</span></a>
             <a href="Under_construction.html"><span class="hvr-underline-from-center">Forum</span></a>
         </div>
@@ -51,7 +51,7 @@
     <div id="mySidenav" class="sidenav">
         <i id="close" class="fa fa-times-circle-o" aria-hidden="true"></i>
         <a href="Header.html">Home</a>
-        <a href='Under_construction.html'>Jobs</a>
+        <a href="jobs.php">Jobs</a>
         <a href="Under_construction.html">Create</a>
         <a href="Under_construction.html" target="_blank">Forum</a>
     </div>
