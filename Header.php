@@ -9,7 +9,7 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Header CSS file -->
-    <link type=text/css rel="stylesheet" href="css/Header.css">
+    <link type=text/css rel="stylesheet" href="css/Header.css?version=1">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <!-- Icon library for 'close' icon on mobile menu -->
@@ -30,7 +30,7 @@
         <!-- left side header nav bar -->
         <div class="col" id="links">
             <a href="jobs.php"><span class="hvr-underline-from-center">Jobs</span></a>
-            <a href="Under_construction.html"><span class="hvr-underline-from-center">Create</span></a>
+            <a href="Under_construction.html"><span class="hvr-underline-from-center">Profile</span></a>
             <a href="forum.php"><span class="hvr-underline-from-center">Forum</span></a>
         </div>
         <!-- Logo -->
@@ -39,11 +39,13 @@
         </div>
         <!-- Right side nav and search bar -->
         <div class="col" id="social">
-            <input type="text" id="search" name="search" placeholder="Search..">
-            <span class="glyphicon glyphicon-cog" id="cog"></span>
-            <span class="glyphicon glyphicon-user" id="icons"></span>
-            <span class="glyphicon glyphicon-bell" id="icons2"></span>
-            <a href="forum.php" id="forum_link"><span class="glyphicon glyphicon-envelope" id="icons3"></span></a>
+            <form class="SearchSpace" action="action_page.php">
+                <button type="submit" id="SubmitButton"><i class="fa fa-search"></i></button>
+                <input type="text" id="search" name="search" placeholder="Search..">
+                <span class="glyphicon glyphicon-user" id="icons"></span>
+                <span class="glyphicon glyphicon-bell" id="icons2"></span>
+                <a href="forum.php" id="forum_link"><span class="glyphicon glyphicon-envelope" id="icons3"></span></a>
+            </form>
         </div>
     </div>
     <!-- Mobile menu, hidden by default -->
@@ -51,13 +53,16 @@
         <i id="close" class="fa fa-times-circle-o" aria-hidden="true"></i>
         <a href="home_page.php">Home</a>
         <a href="jobs.php">Jobs</a>
-        <a href="Under_construction.html">Create</a>
+        <a href="Under_construction.html">Profile</a>
         <a href="forum.php" target="_blank">Forum</a>
     </div>
     <!-- Mobile search bar, hidden by default -->
-    <input type="text" id="mobile-search" name="search" placeholder="Search..">
+    <form class="SearchSpace" action="action_page.php">
+        <button type="submit" id="Mobile_SubmitButton"><i class="fa fa-search"></i></button>
+        <input type="text" id="mobile-search" name="search" placeholder="Search..">
+    </form>
 </div>
 <!-- Header JavaScript file -->
-<script src="js/Header.js?version=1"></script>
+<script src="js/Header.js"></script>
 </body>
 </html>
