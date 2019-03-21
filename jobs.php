@@ -9,8 +9,10 @@
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <link type="text/css" rel="stylesheet" href="jobs_page.css">
+        <link type="text/css" rel="stylesheet" href="css/jobs_page.css?version=1">
   		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  		 <!-- Favicon -->
+        <link rel="icon" type="image/png" href="assets/favicon.png">
         <?php  include_once 'db_connect.php'; include_once 'job_objects.php';?>
     </head>
     <body id="Jobs_Page">
@@ -154,7 +156,8 @@
                                     {
                                         $total = $total + $jobs_array[$x]->getSalary(); 
                                     }
-                                    echo $total / sizeof($jobs_array)
+                                    $out = round($total / sizeof($jobs_array));
+                                    echo "£" . $out;
                                 ?>
                     </td>
                 </div>
@@ -162,23 +165,24 @@
                 <div class="col-2" id="numOfCompanies">
                     <td class="align-middle">
                         <?php
-                        $comps_array = array();
-                        for($x = 0; $x < sizeof($jobs_array); $x++)
-                        {
-                            $check_val = 0;
-                            for($y = 0; $y < sizeof($comps_array); $y++)
+                            $comps_array = array();
+                            array_push($comps_array, $jobs_array[0]->getCompany());
+                            for($x = 0; $x < sizeof($jobs_array); $x++)
                             {
-                                if($jobs_array[$x]->getCompany() == $comps_array[$y]->getCompany())
+                                $checkVal = 0;
+                                for($y = 0; $y < sizeof($comps_array); $y++)
                                 {
-                                    $check_val++;
+                                    if($jobs_array[$x]->getCompany() == $comps_array[$y])
+                                    {
+                                        $checkVal++;
+                                    }
+                                }
+                                if($checkVal == 0)
+                                {
+                                    array_push($comps_array, $jobs_array[$x]->getCompany());
                                 }
                             }
-                            if($check_val == 0)
-                            {
-                                array_push($comps_array, $jobs_array[$x]);
-                            }
-                        }
-                        echo sizeof($comps_array);
+                            echo sizeof($comps_array);
                         ?>
                     </td>
                 </div>
@@ -189,6 +193,13 @@
     </div>
     <div class="row" id="space30"></div>
             <div class="row" id="space30"></div>
+            <div class="row" id="JobTableTitles">
+                <div class="col-2" id="column_table"><p>Job Title</p></div>
+                <div class="col-2" id="column_table"><p>Company</p></div>
+                <div class="col-2" id="column_table"><p>Location</p></div>
+                <div class="col-2" id="column_table"><p>Salary</p></div>
+                <div class="col-4" id="column_table"><p>Job Description</p></div>
+            </div>
             <div class="row">
                 <div class="col-12" id="jobList">
                     <div>
@@ -232,7 +243,7 @@
                                                     </div>
                                             </div>
                                             <div class='col-6' style='background-color:rgba(0, 0, 0, 0.5);'><p style='font-weight: bold;text-decoration: underline;'>Job Description</p><p>" . $job->getDescription() . "</p></div>
-                                    </div><br><br><br>";
+                                    </div><hr><br><br>";
                         }
                         ?>
                     </div>
@@ -255,6 +266,7 @@
                     success: function(data){
                         var filtered_jobs = JSON.parse(data);
                         console.log("filtering successful");
+
                         var node = document.getElementById('jobList').innerHTML = "";
                         var software = "https://www.salleurl.edu/sites/default/files/styles/ample_1400/public/content/nodes/Estudio/image/5743/11072/grado-tecnicas-aplicaciones-software.jpg";
                         var chemical = "https://2o7fsh4anuayrnrhe3us6v71-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/banner-Chemical-Material-Sciences.jpg";
@@ -279,10 +291,13 @@
                             {
                                 bck = electronic;
                             }
-                            var node = document.getElementById('jobList').innerHTML += "<div class='row' style='height: 40px; background-color: #5f0776;'><div class='col-12' style='text-align: center;color:white;'><p>" + filtered_jobs[i].company + "</p></div></div><div class='row' style='color:white; background-image: url("+ bck +");'><div class='col-6' style='background-color:rgba(0, 0, 0, 0.6);'><div class='row'><div class='col-12'><p style='font-weight: bold;text-decoration: underline;'>Job Title</p><p>" + filtered_jobs[i].title + "</p></div></div><div class='row'><div class='col-12'><p style='font-weight: bold;text-decoration: underline;'>Location/County</p><p>" + filtered_jobs[i].location + "</p></div></div><div class='row'><div class='col-12'><p style='font-weight: bold;text-decoration: underline;'>Salary</p><p>£" + filtered_jobs[i].salary + "</p></div></div></div><div class='col-6' style='background-color:rgba(0, 0, 0, 0.6);'><p style='font-weight: bold;text-decoration: underline;'>Job Description</p><p>" + filtered_jobs[i].description + "</p></div></div><br><br><br>";
+
+                            var node = document.getElementById('jobList').innerHTML += "<div class='row' style='height: 40px; background-color: #5f0776;'><div class='col-12' style='text-align: center;color:white;'><p>" + filtered_jobs[i].company + "</p></div></div><div class='row' style='color:white; background-image: url("+ bck +");'><div class='col-6' style='background-color:rgba(0, 0, 0, 0.6);'><div class='row'><div class='col-12'><p style='font-weight: bold;text-decoration: underline;'>Job Title</p><p>" + filtered_jobs[i].title + "</p></div></div><div class='row'><div class='col-12'><p style='font-weight: bold;text-decoration: underline;'>Location/County</p><p>" + filtered_jobs[i].location + "</p></div></div><div class='row'><div class='col-12'><p style='font-weight: bold;text-decoration: underline;'>Salary</p><p>£" + filtered_jobs[i].salary + "</p></div></div></div><div class='col-6' style='background-color:rgba(0, 0, 0, 0.6);'><p style='font-weight: bold;text-decoration: underline;'>Job Description</p><p>" + filtered_jobs[i].description + "</p></div></div><hr><br><br>";
                         }
+
                         //calc number of jobs found
                         document.getElementById("numOfJobs").innerHTML = filtered_jobs.length;
+
                         //calc average salary
                         var total = 0;
                         for(i = 0; i < filtered_jobs.length; i++){
@@ -290,19 +305,26 @@
                         }
                         var output = total / filtered_jobs.length;
                         output = Math.round(output);
-                        document.getElementById("average_sal").innerHTML = output;
+                        document.getElementById("average_sal").innerHTML ="£" + output;
+
                         //calc number of companies found
                         var comps_array = [];
+                        
+                        if(filtered_jobs.length == 0)
+                        {
+                            document.getElementById("average_sal").innerHTML ="£" + 0;
+                        }
+                        else
+                        {
                             comps_array.push(filtered_jobs[0]);
-                            var checkVal = 0;
-                            for(var x = 1; x < filtered_jobs.length; x++)
+                            for(var x = 0; x < filtered_jobs.length; x++)
                             {
-                                checkVal = 0;
+                                var checkVal = 0;
                                 for(var y = 0; y < comps_array.length; y++)
                                 {
                                     if(filtered_jobs[x].company == comps_array[y].company)
                                     {
-                                         checkVal++;   
+                                        checkVal++;
                                     }
                                 }
                                 if(checkVal == 0)
@@ -310,10 +332,11 @@
                                     comps_array.push(filtered_jobs[x]);
                                 }
                             }
-                            document.getElementById("numOfCompanies").innerHTML = comps_array.length;
+                        }
+                        document.getElementById("numOfCompanies").innerHTML = comps_array.length;
                     }
                 });
             }
         </script>
-    <script src="jobs_page.js?version=1"></script>
+    <script src="js/jobs_page.js?version=1"></script>
     </body>
