@@ -9,6 +9,8 @@
 .glyphicon {
     padding-top:10px;
     font-size: 20px;
+    color:white;
+    text-decoration:none;
 }
 #social{
     padding-left:0;
@@ -20,15 +22,21 @@
 }
 #icons{
     padding-right:25px;
+    color:white;
 }
 #icons2{
     padding-right:25px;
+    color:white;
 }
 #icons3{
     padding-right:25px;
 }
+#forum_link{
+    color:white;
+}
 #cog{
     padding-right:15px;
+    color:white;
 }
 .form-control {
     margin-top: 50px;
@@ -171,6 +179,12 @@ input[type=text]:focus {
     margin-bottom:5px;
 }
 
+#forum_link { color:#666666;
+    text-decoration:none;
+}
+#forum_link:visited { color:#666666;
+    text-decoration:none;
+}
 @media only screen and (max-width: 1036px) {
     #links span {
         font-size: 20px;
