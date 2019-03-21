@@ -35,6 +35,9 @@ if(isset($_SESSION['user_online'])) {
 
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 		<style type="text/css">
+		body {
+			font-family: 'Montserrat', sans-serif;
+		}
 			.nav:hover{
 				cursor: pointer;
 			}
@@ -45,7 +48,7 @@ if(isset($_SESSION['user_online'])) {
 	</head>
 
 	<body>
-		<div class="container">
+		<div>
 			<div id="Banner">
 				<?php 
 					if($profileData['university'] == 'University of Lincoln') {
@@ -63,7 +66,7 @@ if(isset($_SESSION['user_online'])) {
 					}
 				?>
 				<div id="NameBar">
-					<h1 style="color:white; font-size: 20pt; padding-top: 8px;">
+					<h1 style="color:white; padding-top: 8px;">
 						<?php 
 							if(isset($_SESSION['user_online'])) {
 								echo ucfirst($profileData['first_name']) . " " . ucfirst($profileData['last_name']); 
@@ -89,10 +92,37 @@ if(isset($_SESSION['user_online'])) {
 			</div>
 			<section id="Profile">		
 				<div id="Summary">
-			
+					<div class="modal fade" id="bio-text" tabindex="-1" role="dialog" aria-labelledby="updateLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+							<div class="modal-content">
+							  <div class="modal-header">
+								<h5 class="modal-title" id="updateLabel">Update Your Bio <i class="far fa-smile"></i></h5>
+							  </div>
+								<form role="form" method="POST" action="">
+									<div class="modal-body">
+										<input type="hidden" value="bio-update" name="update-bio-hidden">
+										<div class="form-group">
+											<textarea class="form-control" id="bio-text" name="bio-text" aria-describedby="bio-text" style="resize: none;"><?php echo $profileData['about_text']; ?></textarea>
+										</div>
+										<button class="btn btn-primary" type="submit" id="bio-submit" name="bio-submit">Edit <i class="fas fa-pencil-alt"></i></button>
+								  </div>
+								</form>
+							</div>
+						  </div>
+						</div>
+						<?php
+						if(isset($_SESSION['user_online'])) {
+							if($_SESSION['user_online'] == $profileData['email']) {
+								echo '<h3 style="text-decoration: bold; color:#5f0776;" data-toggle="modal" data-target="#bio-text">Bio <i class="fas fa-pencil-alt"></i></h3>';
+							} else {
+								echo '<h3 style="text-decoration: bold"><Bio</h3>';
+							}
+						}
+					?>
+					<?php if(isset($_SESSION['user_online'])) { echo $profileData['about_text']; }?>
 				</div>
 				<div id="AboutMe" class="tabcontent" style="margin-top: 10px;">
-					<h1 style="text-decoration: underline;">About Me</h1>
+					<h1 style="text-decoration: bold;">About Me</h1>
 					<p>
 						<?php 
 							if(isset($_SESSION['user_online'])) {
@@ -101,21 +131,11 @@ if(isset($_SESSION['user_online'])) {
 						?>
 					</p>
 					<br>
-					<?php
-						if(isset($_SESSION['user_online'])) {
-							if($_SESSION['user_online'] == $profileData['email']) {
-								echo '<h3 style="text-decoration: underline; color:#5f0776;" data-toggle="modal" data-target="#bio-text">Bio <i class="fas fa-pencil-alt"></i></h3>';
-							} else {
-								echo '<h3 style="text-decoration: underline;"><Bio</h3>';
-							}
-						}
-					?>
 					<p>
-						<?php if(isset($_SESSION['user_online'])) { echo $profileData['about_text']; }?>
 					</p>
 				</div>
 				<div id="activity-feed" class="tabcontent" style="margin-top: 10px;">
-					<h1 style="text-decoration: underline;">Activity</h1>
+					<h1 style="text-decoration: Bold;">Activity</h1>
 					<?php 
 						if(isset($_SESSION['user_online'])) {
 							$posts = $profileObj->get_profile_activity($profileData['first_name']);
@@ -170,24 +190,6 @@ if(isset($_SESSION['user_online'])) {
   </div>
 </div>
 
-<div class="modal fade" id="bio-text" tabindex="-1" role="dialog" aria-labelledby="updateLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="updateLabel">Update Your Bio <i class="far fa-smile"></i></h5>
-      </div>
-      	<form role="form" method="POST" action="">
-      		<div class="modal-body">
-				<input type="hidden" value="bio-update" name="update-bio-hidden">
-				<div class="form-group">
-					<textarea class="form-control" id="bio-text" name="bio-text" aria-describedby="bio-text" style="resize: none;"><?php echo $profileData['about_text']; ?></textarea>
-				</div>
-	        	<button class="btn btn-primary" type="submit" id="bio-submit" name="bio-submit">Edit <i class="fas fa-pencil-alt"></i></button>
-	      </div>
-	    </form>
-    </div>
-  </div>
-</div>
 
 <div class="modal fade" id="create-post" tabindex="-1" role="dialog" aria-labelledby="createLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
