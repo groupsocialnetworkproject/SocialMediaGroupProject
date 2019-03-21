@@ -34,10 +34,6 @@
 #forum_link{
     color:white;
 }
-#cog{
-    padding-right:15px;
-    color:white;
-}
 .form-control {
     margin-top: 50px;
 }
@@ -128,8 +124,36 @@ input[type=text] {
 
 /* When the input field gets focus, change its width to 100% */
 input[type=text]:focus {
-    width: 100%;
+    width: 80%;
     color:black;
+}
+/* Style the submit button */
+.SearchSpace{
+    margin-top:5px;
+}
+form.SearchSpace button {
+    margin-left:1px;
+    margin-top:5px;
+    float: right;
+    width: 10%;
+    height:28px;
+    background: #d4a1f3;
+    font-size: 10px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+form.SearchSpace button:hover {
+    background: #ada2ff;
+}
+
+/* Clear floats */
+form.SearchSpace::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 /*Mobile menu*/
 .sidenav {
@@ -174,9 +198,14 @@ input[type=text]:focus {
     text-align: center;
 }
 #mobile-search{
-    width:100%;
+    width:85%;
     display:none;
     margin-bottom:5px;
+    float:left;
+    margin-left:5px;
+}
+#Mobile_SubmitButton{
+    float:left;
 }
 
 #forum_link { color:#666666;
@@ -184,6 +213,21 @@ input[type=text]:focus {
 }
 #forum_link:visited { color:#666666;
     text-decoration:none;
+}
+/*For big screens*/
+@media only screen and (min-width: 1500px) {
+    .glyphicon {
+        font-size: 25px;
+    }
+    form.SearchSpace button {
+        margin-top: 10px;
+    }
+    #search{
+        margin-top:10px;
+    }
+    #icons{
+        padding-right:36px;
+    }
 }
 @media only screen and (max-width: 1036px) {
     #links span {
@@ -201,10 +245,6 @@ input[type=text]:focus {
     #icons3{
         padding-right:20px;
     }
-    #cog{
-        padding-right:10px;
-    }
-
 }
 @media only screen and (min-width:846px) and (max-width:863px){
     #links span {
@@ -212,13 +252,13 @@ input[type=text]:focus {
         margin-left: 5%;
     }
 }
-@media only screen and (max-width: 846px){
+@media only screen and (max-width: 849px){
     #links span {
         font-size: 17px;
         margin-left: 5%;
     }
     input[type=text] {
-        width: 100%;
+        width: 80%;
     }
 }
 @media only screen and (min-width:611px) and (max-width:630px){
@@ -234,8 +274,14 @@ input[type=text]:focus {
     #mobile-search{
         display:none !important;
     }
+    #Mobile_SubmitButton{
+        display:none !important;
+    }
 }
 @media only screen and (max-width: 610px){
+    #SubmitButton{
+        display:none;
+    }
     #links{
         display:none;
     }
