@@ -104,7 +104,7 @@ if(isset($_SESSION['user_online'])) {
 										<div class="form-group">
 											<textarea class="form-control" id="bio-text" name="bio-text" aria-describedby="bio-text" style="resize: none;"><?php echo $profileData['about_text']; ?></textarea>
 										</div>
-										<button class="btn btn-primary" type="submit" id="bio-submit" name="bio-submit">Edit <i class="fas fa-pencil-alt"></i></button>
+										<button style="background-color: #5f0776" class="btn btn-primary" type="submit" id="bio-submit" name="bio-submit">Edit <i class="fas fa-pencil-alt"></i></button>
 								  </div>
 								</form>
 							</div>
@@ -113,7 +113,7 @@ if(isset($_SESSION['user_online'])) {
 						<?php
 						if(isset($_SESSION['user_online'])) {
 							if($_SESSION['user_online'] == $profileData['email']) {
-								echo '<h3 style="text-decoration: bold; color:#5f0776;" data-toggle="modal" data-target="#bio-text">Bio <i class="fas fa-pencil-alt"></i></h3>';
+								echo '<h3 style="text-decoration: bold; text-align: left; padding-top: 5%; padding-left: 5%; color:#5f0776;" data-toggle="modal" data-target="#bio-text">Bio <i class="fas fa-pencil-alt"></i></h3>';
 							} else {
 								echo '<h3 style="text-decoration: bold"><Bio</h3>';
 							}
@@ -122,7 +122,7 @@ if(isset($_SESSION['user_online'])) {
 					<?php if(isset($_SESSION['user_online'])) { echo $profileData['about_text']; }?>
 				</div>
 				<div id="AboutMe" class="tabcontent" style="margin-top: 10px;">
-					<h1 style="text-decoration: bold;">About Me</h1>
+					<h1 style="text-decoration: bold; text-align: left">About Me</h1>
 					<p>
 						<?php 
 							if(isset($_SESSION['user_online'])) {
@@ -135,15 +135,15 @@ if(isset($_SESSION['user_online'])) {
 					</p>
 				</div>
 				<div id="activity-feed" class="tabcontent" style="margin-top: 10px;">
-					<h1 style="text-decoration: Bold;">Activity</h1>
+					<h1 style="text-decoration: Bold; text-align: left">Activity</h1>
 					<?php 
 						if(isset($_SESSION['user_online'])) {
 							$posts = $profileObj->get_profile_activity($profileData['first_name']);
 							if ($posts->num_rows > 0) {
 			                    foreach($posts as $post) {
 			                     	echo '
-			                    	<div class="card" style="width: 18rem;">
-									  <div class="card-header" style="background-color:#5f0776; color:white;">
+			                    	<div class="card" style="width: 300%"; margin-left: 50%;>
+									  <div class="card-header" style="background-color:#5f0776; color:white;>
 									  ' . $post['post_title'] . '
 									  </div>
 									  <div class="card-body">
@@ -156,7 +156,7 @@ if(isset($_SESSION['user_online'])) {
 			                    }
 			                } else {
 			                    echo '
-			                    	<div class="card" style="width: 18rem;">
+			                    	<div class="card" style="width: 300%"; margin-left: 50%;>
 									  <div class="card-header">
 									   <i class="far fa-frown"></i>
 									  </div>
@@ -183,7 +183,7 @@ if(isset($_SESSION['user_online'])) {
       		<div class="modal-body">
 				<input type="hidden" value="update_profile_pic" name="update_profile_pic">
 				<input type="file" name="profilePictureToUpload" id="profilePictureToUpload" /> 
-	        	<button class="btn btn-success" type="submit" id="profile-pic-submit" name="profile-pic-submit">Submit <i class="fas fa-pencil-alt"></i></button>
+	        	<button style="background-color: #5f0776" class="btn btn-success" type="submit" id="profile-pic-submit" name="profile-pic-submit">Submit <i class="fas fa-pencil-alt"></i></button>
 	      </div>
 	    </form>
     </div>
@@ -206,7 +206,7 @@ if(isset($_SESSION['user_online'])) {
 				<div class="form-group">
 					<textarea class="form-control" id="create-post-text" name="create-post-text" aria-describedby="create-post-text" style="resize: none;" placeholder="Write something magical!"></textarea>
 				</div>
-	        	<button class="btn btn-success" type="submit" id="create-post-submit" name="create-post-submit" style="width: 100%;">Post <i class="far fa-paper-plane"></i></button>
+	        	<button style="background-color: #5f0776" class="btn btn-success" type="submit" id="create-post-submit" name="create-post-submit" style="width: 100%;">Post <i class="far fa-paper-plane"></i></button>
 	    	</form>
 	    </div>
     </div>
