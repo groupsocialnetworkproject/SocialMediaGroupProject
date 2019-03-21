@@ -1,6 +1,7 @@
 
     console.log('Header Page JS loaded');
-    
+    console.log('9 Changes have been made');
+
     //Animated search bar
     function expand() {
         $(".search").toggleClass("close");
@@ -21,9 +22,11 @@
         if (width <= 610) {
             document.getElementById("menu").style.display = "block";
             document.getElementById("mobile-search").style.display = "block"
+            document.getElementById("Mobile_SubmitButton").style.display = "block"
         } else if (width >= 610) {
             document.getElementById("menu").style.display = "none";
             document.getElementById("mobile-search").style.display = "none"
+            document.getElementById("Mobile_SubmitButton").style.display = "none"
         }
         //function does the same as above but dynamically, not just on page load
         var resize = $(window).resize(function () {
@@ -32,11 +35,13 @@
             if (win.width() <= 610) {
                 document.getElementById("menu").style.display = "block";
                 document.getElementById("mobile-search").style.display = "block"
+                document.getElementById("Mobile_SubmitButton").style.display = "block"
             } else if (win.width() >= 610) {
                 console.log('Resize function');
                 document.getElementById("menu").style.display = "none";
                 document.getElementById("mySidenav").style.width = "0";
                 document.getElementById("mobile-search").style.display = "none"
+                document.getElementById("Mobile_SubmitButton").style.display = "none"
             }
 
         });
