@@ -11,15 +11,12 @@ class UserAccess
 	{
 		include 'database.php';
 	}
-
 	public function login($loginArray) {
 		session_start();
 		$db = new Database();
 		$connection = $db->open_connection("groupproject");
-
 		$email = isset($loginArray['email_login']) && !empty($loginArray['email_login']) ? $loginArray['email_login'] : null;
         $password = isset($loginArray['password_login']) && !empty($loginArray['password_login']) ? $loginArray['password_login'] : null;
-
 		$findUsr = "SELECT * FROM accounts WHERE email LIKE '%" . $email . "%' AND password LIKE '%" . sha1($password) . "%'";
 		
 		$result = $db->queryDb($connection, $findUsr);
@@ -28,13 +25,12 @@ class UserAccess
 		}*/
 		if ($result->num_rows > 0) {
 			$_SESSION['user_online'] = $email;
-			header('Location: index.php');
+			header('Location: home_page.php');
 		} else {
 			$_SESSION['failMsg'] = "Email or password is incorrect!";
 			header('Location: login.php');
 		}
 	}
-
 	public function register($regArray)  {
 		session_start();
 		$db = new Database();
@@ -48,13 +44,11 @@ class UserAccess
         $password = isset($regArray['password_register']) && !empty($regArray['password_register']) ? $regArray['password_register'] : null;
         $emailConf = isset($regArray['confirm_email_register']) && !empty($regArray['confirm_email_register']) ? $regArray['confirm_email_register'] : null;
         $passwordConf = isset($regArray['confirm_password_register']) && !empty($regArray['confirm_password_register']) ? $regArray['confirm_password_register'] : null;
-
 		$checkUnique = "SELECT email FROM accounts WHERE email LIKE '%" . $email . "%'";
-
 		$result = $db->queryDb($connection, $checkUnique);
-		/*if (!$result) {
+		if (!$result) {
 		    trigger_error('Invalid query: ' . $connection->error);
-		}*/
+		}
 		
 		//if user registration is unique then begin creating
 		if ($result->num_rows == 0) {
@@ -77,7 +71,6 @@ class UserAccess
 			header('Location: login.php');
 		}
 	}
-
 	//logout the user, destroying relevant sessions before redirecting to the login page.
 	public function logout() {
 		session_start();
@@ -85,11 +78,9 @@ class UserAccess
 		session_unset();
 		unset($_SESSION['user_online']);
 		$_SESSION = array();
-
 		header('location: login.php');
 	}
 }
-
 $user_code_obj = new UserAccess();
 if(isset($_POST['loginAction']) == "login"){
 	$user_code_obj->login($_POST);

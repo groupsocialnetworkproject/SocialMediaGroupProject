@@ -55,3 +55,24 @@
     $('#close').click(function () {
         document.getElementById("mySidenav").style.width = "0";
     })
+
+
+$("#search").keyup(function() {
+    var search = $('#search').val();
+    if (search == "") {
+        $("#searchBox").html("");
+        $("#searchBox").hide();
+    } else {
+        $.ajax({
+            type: "POST",
+            url: 'search_bar_ajax.php',
+            data: {'search': search},
+            success: function(data) {
+                $('#searchBox').html(data).show();
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+});

@@ -46,7 +46,7 @@ $forumCode = new ForumCode();
                       <div class="card my-4">
                       <h5 class="card-header">'. $post['post_title'] . '</h5>
                       <div class="card-body">
-                      <p>' . $post['post_author'] . ', ' . date('d/m/y H:i:s', strtotime($post['post-date'])) . '</p>
+                      <p>' . $post['post_author'] . ', ' . date('d/m/y H:i:s', strtotime($post['post_date'])) . '</p>
                       </div>
                       </div>
                     ';
@@ -85,7 +85,10 @@ $forumCode = new ForumCode();
             <div class="col-md-4">
                <!-- Search Widget -->
                <div class="card my-4">
-                  <h5 class="card-header">People</h5>
+                  <!--<h5 class="card-header">People </h5>-->                    
+                      <div class="card-header">                            
+                          <input type="text" class="form-control" id="searchForUser" placeholder="Search...">
+                      </div>
                   <div class="card-body">
                     <?php //echo 'tester@test.com' 
                       $getUser = $forumCode->get_users();
@@ -156,6 +159,13 @@ $forumCode = new ForumCode();
               $("#privateMsgWidget").toggle();
               $("#forumPage").toggle();
             });
+
+            $("#searchForUser").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".toggle-prvmsg").filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+              });
           });
       </script>
    </body>

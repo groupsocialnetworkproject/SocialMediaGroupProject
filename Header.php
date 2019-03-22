@@ -39,12 +39,16 @@
         </div>
         <!-- Right side nav and search bar -->
         <div class="col" id="social">
-            <form class="SearchSpace" action="action_page.php">
+            <form class="SearchSpace" action="">
                 <button type="submit" id="SubmitButton"><i class="fa fa-search"></i></button>
                 <input type="text" id="search" name="search" placeholder="Search..">
                 <span class="glyphicon glyphicon-user" id="icons"></span>
                 <span class="glyphicon glyphicon-bell" id="icons2"></span>
                 <a href="forum.php" id="forum_link"><span class="glyphicon glyphicon-envelope" id="icons3"></span></a>
+
+                <div class="dropdown">
+                    <div class="dropdown-menu" id="searchBox"  style="margin-left: 258px;margin-top: 32.5px;"></div>
+                </div>
             </form>
         </div>
     </div>
@@ -60,6 +64,7 @@
     <form class="SearchSpace" action="action_page.php">
         <button type="submit" id="Mobile_SubmitButton"><i class="fa fa-search"></i></button>
         <input type="text" id="mobile-search" name="search" placeholder="Search..">
+        <div id="searchBox" ></div>
     </form>
 </div>
 <!-- Header JavaScript file -->

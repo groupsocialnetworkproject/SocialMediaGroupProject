@@ -30,13 +30,13 @@ $pcObj = new PublicChat();
 </head>
 <body style="background-color: grey;" >
 <div class="container" style="background-color: grey; color: grey;">
-<h3 class=" text-center" style='color:white;'>Private Chat Room <?php if(isset($_SESSION['user_online'])) { echo "<a href='user_access_code.php?logout' id='signout-out'><i class='fas fa-sign-out-alt'></i></a>"; } ?></h3>
+<h3 class=" text-center" style='color:white;'>Public Chat Room <?php if(isset($_SESSION['user_online'])) { echo "| Logout <a href='user_access_code.php?logout' id='signout-out'><i class='fas fa-sign-out-alt'></i></a>"; } ?></h3>
 <div class="messaging">
       <div class="inbox_msg">
         <div class="inbox_people" style="background-color: #5f0776;">
           <div class="headind_srch">
             <!-- Search form -->
-            <input type="text" class="form-control" id="searchForUser" placeholder="Search User..." >
+            <input type="text" class="form-control" id="searchForUser" placeholder="Search User...">
           </div>
           <div class="inbox_chat" >
             <?php //echo 'tester@test.com' 
@@ -53,11 +53,6 @@ $pcObj = new PublicChat();
                   </div>';
                 }
               ?>
-
-
-
-
-
           </div>
         </div>
         <div class="mesgs">
@@ -110,6 +105,13 @@ $pcObj = new PublicChat();
             }
           });
         });
+      
+      $("#searchForUser").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $(".chat_list").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
     });
   </script>
     </body>
