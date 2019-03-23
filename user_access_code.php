@@ -25,7 +25,7 @@ class UserAccess
 		}*/
 		if ($result->num_rows > 0) {
 			$_SESSION['user_online'] = $email;
-			header('Location: home_page.php');
+			header('Location: index.php');
 		} else {
 			$_SESSION['failMsg'] = "Email or password is incorrect!";
 			header('Location: login.php');

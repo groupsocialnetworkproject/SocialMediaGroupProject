@@ -3,9 +3,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+$subject = $_GET['subject'];
 session_start();
-include_once('public_chat_code.php');
-$pcObj = new PublicChat();
+include_once('subject_chat_code.php');
+$pcObj = new SubjectChat();
 /*if(isset($_SESSION['user_online'])) {
   $profileData = $pcObj->get_profile($_SESSION['user_online']);
 }*/
@@ -30,7 +31,7 @@ $pcObj = new PublicChat();
 </head>
 <body style="background-color: grey;" >
 <div class="container" style="background-color: grey; color: grey;">
-<h3 class=" text-center" style='color:white;'>Public Chat Room <?php if(isset($_SESSION['user_online'])) { echo "<a href='index.php' style='color:purple;'>Rooms</a> | Logout <a href='user_access_code.php?logout' id='signout-out'><i class='fas fa-sign-out-alt'></i></a>"; } ?></h3>
+<h3 class=" text-center" style='color:white;'><?php echo $subject . ' Chat Room | '; if(isset($_SESSION['user_online'])) { echo "<a href='index.php' style='color:purple;'>Rooms</a> | Logout <a href='user_access_code.php?logout' id='signout-out'><i class='fas fa-sign-out-alt'></i></a>"; } ?></h3>
 <div class="messaging">
       <div class="inbox_msg">
         <div class="inbox_people" style="background-color: #5f0776;">
@@ -40,7 +41,7 @@ $pcObj = new PublicChat();
           </div>
           <div class="inbox_chat" >
             <?php //echo 'tester@test.com' 
-                $getUser = $pcObj->get_users();
+                $getUser = $pcObj->get_users($subject);
                 foreach($getUser as $foundUser) {
                   echo '<div class="chat_list">
                     <div class="chat_people">
@@ -60,10 +61,11 @@ $pcObj = new PublicChat();
           </div>
           <div class="type_msg">
             <div class="input_msg_write">
-              <form name="publicSubmitMsg" id="publicSubmitMsg">
+              <form name="subjectSubmitMsg" id="subjectSubmitMsg">
                 <div class="form-group">
                   <input type="hidden" name="sender" id="user_who_online" value="<?php echo $_SESSION['user_online']; ?>">
-                  <input type="text" class="form-control" name="publicTxt" id="publicTxt" placeholder="Write your message and press enter..." />
+                  <input type="hidden" name="receiver" id="course_name" value="<?php echo $subject; ?>">
+                  <input type="text" class="form-control" name="subjectTxt" id="subjectTxt" placeholder="Write your message and press enter..." />
                 </div>
               </form>
             </div>
@@ -76,10 +78,11 @@ $pcObj = new PublicChat();
     $(document).ready(function(){
       var ajaxCall=function() {
         var online_user = $("#user_who_online").val();
+        var subject_name = $('#course_name').val();
         $.ajax({
             type:'POST',
-            url:'public_room_get.php',
-            data: {'online_user': online_user},
+            url:'subject_room_get.php',
+            data: {'online_user': online_user, 'subject_name': subject_name},
             success:function(data)
             {
               $('.msg_history').html(data);
@@ -87,18 +90,19 @@ $pcObj = new PublicChat();
         });
       }
       setInterval(ajaxCall,1000);
-      $("#publicSubmitMsg").submit(function(e) {
+      $("#subjectSubmitMsg").submit(function(e) {
           e.preventDefault();
           var sender = $('#user_who_online').val();
-          var msgContents = $('#publicTxt').val();
+          var msgContents = $('#subjectTxt').val();
+          var receiver = $('#course_name').val();
 
           $.ajax({
             type: "POST",
-            url: 'public_room_send.php',
-            data: {'sender': sender,'msgContents': msgContents},
+            url: 'subject_chat_send.php',
+            data: {'sender': sender, 'receiver': receiver, 'msgContents': msgContents},
             success: function(data) {
               console.log('successfully sent message');
-              $('#publicTxt').val('');
+              $('#subjectTxt').val('');
             },
             error: function(xhr){
               alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);

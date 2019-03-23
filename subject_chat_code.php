@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 /**
  * 
  */
-class PublicChat
+class SubjectChat
 {
 	
 	function __construct()
@@ -32,11 +32,11 @@ class PublicChat
 	}
 
 	//currently generic fetch users - will be adapted into 'online users'
-	public function get_users() {
+	public function get_users($room_name) {
 		$db = new Database();
 		$connection = $db->open_connection("groupproject");
 
-		$getusers = "SELECT DISTINCT `accounts`.`profile_picture`, `accounts`.`email`, `accounts`.`first_name`, `accounts`.`last_name`, `private_messages`.`receiver` FROM `accounts` INNER JOIN `private_messages` ON  `accounts`.`email` = `private_messages`.`sender` WHERE `private_messages`.`receiver` LIKE '%public_room%';";
+		$getusers = "SELECT DISTINCT `accounts`.`profile_picture`, `accounts`.`email`, `accounts`.`first_name`, `accounts`.`last_name`, `private_messages`.`receiver` FROM `accounts` INNER JOIN `private_messages` ON  `accounts`.`email` = `private_messages`.`sender` WHERE `private_messages`.`receiver` LIKE '%" . $room_name . "%';";
 
 		$foundUsers = $db->queryDb($connection, $getusers);
 
@@ -46,11 +46,11 @@ class PublicChat
 		return $foundUsers;
 	}
 
-	public function get_public_posts() {
+	public function get_course_posts($course_name) {
 		$db = new Database();
 		$connection = $db->open_connection("groupproject");
 
-		$getPrivMsgs = "SELECT * FROM private_messages WHERE receiver = 'public_room' ORDER BY `private_messages`.`sent_time` DESC";
+		$getPrivMsgs = "SELECT * FROM private_messages WHERE receiver LIKE '%" . $course_name . "%' ORDER BY `private_messages`.`sent_time` DESC";
 
 		$result = $db->queryDb($connection, $getPrivMsgs);
 
