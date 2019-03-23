@@ -10,30 +10,18 @@ $connection = $db->open_connection("groupproject");
 
 if (isset($_POST['search'])) {
   $search = $_POST['search'];
-  $Query = "SELECT email FROM accounts WHERE email LIKE '%$search%' LIMIT 5";
+  $Query = "SELECT profile_picture, email FROM accounts WHERE email LIKE '%$search%' LIMIT 5";
   
   $ExecQuery = MySQLi_query($connection, $Query);
-
-  echo '
-  <a class="dropdown-item">';
 
    //Fetching result from database.
 
    while ($Result = MySQLi_fetch_array($ExecQuery)) {
-
-       ?>
-
-   <!-- Assigning searched result in "Search box" in "search.php" file. -->
-
-       <?php echo $Result['email']; ?>
-
-   <!-- Below php code is just for closing parenthesis. Don't be confused. -->
-
-   <?php
+    echo '
+        <a class="dropdown-item" href="profile_page.php?user=' . $Result['email'] . '">
+          <img align="left" id="ProfilePicture" src="Assets/' . $Result['profile_picture'] . '" width=50 style="padding-right: 5px;"> ' . $Result['email'] . '</a>';
 
 }}
 
 
 ?>
-
-</a>

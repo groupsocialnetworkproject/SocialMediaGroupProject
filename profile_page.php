@@ -4,19 +4,35 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start(); 
 
+
 include 'profile_code.php';
 $profileObj = new Profile();
-if(isset($_SESSION['user_online'])) {
-	$profileData = $profileObj->get_profile($_SESSION['user_online']);
-	if(isset($_POST['update-bio-hidden']) == "bio-update"){
-		$profileObj->updateBio($_POST['bio-text'], $_SESSION['user_online']);
-	}
-	if(isset($_POST['create-post-hidden']) == "create-post-hidden") {
-		$profileObj->create_post($_POST['create-post-title'], $_POST['create-post-text'], $_SESSION['user_online']);
-	}
-	if(isset($_POST['update_profile_pic']) == 'update_profile_pic') {
-		$profileObj->uploadPicture($_FILES["profilePictureToUpload"], $_SESSION['user_online']);
-	}
+//if(isset($_SESSION['user_online'])) {
+
+//check for GET data, perform error handling on blank data.
+if(isset($_GET['user'])) {
+	$user = $_GET['user'];
+	if($user == "") {
+		header('Location: login.php');
+	} else {	
+		//fetch the users profile based on the GET data. 
+		//Following this, perform a quick error check on if the user has gone to an invalid user
+		$profileData = $profileObj->get_profile($user);
+		if($profileData['first_name'] == "") {
+			header('Location: login.php');
+		}
+		if(isset($_POST['update-bio-hidden']) == "bio-update"){
+			$profileObj->updateBio($_POST['bio-text'], $_SESSION['user_online']);
+		}
+		if(isset($_POST['create-post-hidden']) == "create-post-hidden") {
+			$profileObj->create_post($_POST['create-post-title'], $_POST['create-post-text'], $_SESSION['user_online']);
+		}
+		if(isset($_POST['update_profile_pic']) == 'update_profile_pic') {
+			$profileObj->uploadPicture($_FILES["profilePictureToUpload"], $_SESSION['user_online']);
+		}
+	} 
+} else{
+	header('Location: login.php');
 }
 ?>
 <!DOCTYPE html>
