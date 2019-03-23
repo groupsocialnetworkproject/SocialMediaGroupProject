@@ -1,3 +1,12 @@
+<?php 
+session_start();
+if (isset($_SESSION['user_online'])){
+    
+}
+else{
+    header('Location:https://betterbook.000webhostapp.com/login.php');
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -204,10 +213,10 @@
                 <div class="col-12" id="jobList">
                     <div>
                         <?php
-                        $url_software = "https://www.salleurl.edu/sites/default/files/styles/ample_1400/public/content/nodes/Estudio/image/5743/11072/grado-tecnicas-aplicaciones-software.jpg";
-                        $url_chemical = "https://2o7fsh4anuayrnrhe3us6v71-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/banner-Chemical-Material-Sciences.jpg";
-                        $url_mechanical = "https://3fee7a1sld751eqrjr3a035t-wpengine.netdna-ssl.com/wp-content/themes/genesis-child/images/aerospace-banner.jpg";
-                        $url_electronic = "https://www.altran.com/as-content/uploads/2017/05/2-6_industrials-electronics_v2_share_1200x600.jpg";
+                        $url_software = "assets/software.jpg";
+                        $url_chemical = "assets/chemical.jpg";
+                        $url_mechanical = "assets/mechanical.jpg";
+                        $url_electronic = "assets/electronics.jpg";
                         $url_bck;
                         $sql = "SELECT * FROM jobs_new";
                         $result = mysqli_query($conn, $sql);
@@ -268,10 +277,10 @@
                         console.log("filtering successful");
 
                         var node = document.getElementById('jobList').innerHTML = "";
-                        var software = "https://www.salleurl.edu/sites/default/files/styles/ample_1400/public/content/nodes/Estudio/image/5743/11072/grado-tecnicas-aplicaciones-software.jpg";
-                        var chemical = "https://2o7fsh4anuayrnrhe3us6v71-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/banner-Chemical-Material-Sciences.jpg";
-                        var mechanical = "https://3fee7a1sld751eqrjr3a035t-wpengine.netdna-ssl.com/wp-content/themes/genesis-child/images/aerospace-banner.jpg";
-                        var electronic = "https://www.altran.com/as-content/uploads/2017/05/2-6_industrials-electronics_v2_share_1200x600.jpg";
+                        var software = "assets/software.jpg";
+                        var chemical = "assets/chemical.jpg";
+                        var mechanical = "assets/mechanical.jpg";
+                        var electronic = "assets/electronics.jpg";
                         var bck;
                         for(i = 0; i < filtered_jobs.length; i++)
                         {

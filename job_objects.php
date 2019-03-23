@@ -4,6 +4,7 @@
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
     class Job{
+        var $id;
         var $title;
         var $company;
         var $location;
@@ -11,6 +12,10 @@
         var $description;
         var $field;
         var $type;
+        
+        function setId($ID){
+            $this->id = $ID;    
+        }
         
         function setField($Field){
             $this->field = $Field;
@@ -38,6 +43,10 @@
         
         function setDescription($Description){
             $this->description = $Description;
+        }
+        
+        function getId(){
+            return $this->id;    
         }
         
         function getField(){
@@ -73,6 +82,7 @@
     if($resultCheck > 0){
         while($row = mysqli_fetch_assoc($result)){
             $next_job = new Job();
+            $next_job->setId($row['job_id']);
             $next_job->setTitle($row['job_title']);
             $next_job->setCompany($row['job_company']);
             $next_job->setSalary($row['job_salary']);
