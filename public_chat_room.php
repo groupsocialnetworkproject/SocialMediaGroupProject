@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+include('Header.php');
 session_start();
 include_once('public_chat_code.php');
 $pcObj = new PublicChat();
@@ -11,7 +11,12 @@ $pcObj = new PublicChat();
 }*/
 ?>
 <!doctype html>
-<html style="background-color: grey;">
+ <body style="background: url(Assets/lincolnlib.jpg
+) no-repeat center center fixed;
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;">
 <head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>

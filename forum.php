@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+include('Header.php');
 session_start();
 
 include('forum_code.php');
@@ -30,13 +30,18 @@ $forumCode = new ForumCode();
         }
       </style>
    </head>
-   <body style="padding-top: 56px;">
+   <body style="background: url(Assets/lincolnhead.png
+) no-repeat center center fixed;
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;">
      
       <!-- Page Content -->
       <div class="container">
-         <div class="row">
+         <div class="row" style="padding-top: 56px;">
             <!-- Post Content Column -->
-            <div class="col-lg-8" id="forumPage">
+            <div class="col-lg-8" id="forumPage" style=" background-color:#5f0776;">
                <h1 class="mt-4">Forum Page</h1>
                <hr>
                 <?php 
@@ -53,19 +58,19 @@ $forumCode = new ForumCode();
                   } 
                 ?>
             </div>
-            <div class="col-lg-8" id="privateMsgWidget">
+            <div class="col-lg-8" id="privateMsgWidget" style="background-color:#5f0776;">
                <h1 class="mt-4">Private Messages</h1>
                <hr>
                <div class="card my-4">
                   <h5 class="card-header">Private Message</h5>
                   <div class="card-body">
-                     <div class="panel panel-primary">
+                     <div class="panel panel-primary" style="background-color: #b798ec;">
                         <div class="panel-body">
                            <ul class="chat">
                               <span id="dynamic_chat"></span>
                            </ul>
                         </div>
-                        <div class="panel-footer">
+                        <div class="panel-footer" style="background-color: #b798ec;">
                            <form role="form" method="POST" action="" name="sendMsg" id="sendMsg">
                               <div class="input-group" style="margin-bottom: 5px;">
                                  <input type="hidden" name="receiver" id="receiver" value="">
@@ -86,14 +91,14 @@ $forumCode = new ForumCode();
                <!-- Search Widget -->
                <div class="card my-4">
                   <!--<h5 class="card-header">People </h5>-->                    
-                      <div class="card-header">                            
+                      <div class="card-header" style="background-color: #5f0776;">                            
                           <input type="text" class="form-control" id="searchForUser" placeholder="Search...">
                       </div>
-                  <div class="card-body">
+                  <div class="card-body" style="background-color:#5f0776;">
                     <?php //echo 'tester@test.com' 
                       $getUser = $forumCode->get_users();
                       foreach($getUser as $foundUser) {
-                        echo '<div class="input-group toggle-prvmsg" style="border: 0.5px solid black; padding: 5px; border-radius: 10px; margin-bottom:5px;">
+                        echo '<div class="input-group toggle-prvmsg" style="border: 0.5px solid black; padding: 5px; border-radius: 10px; margin-bottom:5px; background-color:#b798ec;">
                             <img src="assets/generic-profile.png" name="hey" alt="pp" style="height:30px; margin-right: 5px;" class="privMsgUsr">
                             <h5>
                               <span class="startMsgUsr">'. $foundUser['email'] . '</span>
